@@ -44,6 +44,7 @@ func init() {
 	rootPFlagSet.StringVarP(&output, "output", "o", "text", "Desired output format [text|json]")
 	_ = viper.BindPFlag("output", rootPFlagSet.Lookup("output"))
 
+	rootCmd.AddCommand(newCategoriesCmd())
 	rootCmd.AddCommand(newLettersCmd())
 }
 
