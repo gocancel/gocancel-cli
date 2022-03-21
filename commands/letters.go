@@ -87,7 +87,7 @@ func runLettersCreate(c *CmdConfig) error {
 
 	letterPayload.ProofOfIDs = proofOfIDs
 
-	letter, _, err := c.Client.Letters.Create(context.Background(), letterPayload.CreateLetterRequest)
+	letter, _, err := c.Client.Letters.Create(context.Background(), letterPayload.LetterRequest)
 	if err != nil {
 		return err
 	}
@@ -154,7 +154,7 @@ func readLetterPayload(stdin io.Reader, path string) (*LetterPayload, error) {
 }
 
 type LetterPayload struct {
-	*gocancel.CreateLetterRequest
+	*gocancel.LetterRequest
 }
 
 func parseLetterPayload(payload []byte) (*LetterPayload, error) {
