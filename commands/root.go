@@ -46,6 +46,7 @@ func init() {
 
 	rootCmd.AddCommand(newCategoriesCmd())
 	rootCmd.AddCommand(newLettersCmd())
+	rootCmd.AddCommand(newOrganizationsCmd())
 }
 
 func initConfig() {
