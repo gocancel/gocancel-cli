@@ -4,7 +4,7 @@ The GoCancel CLI helps you interact with your GoCancel account right from the te
 
 ## Usage
 
-Installing the CLI provides access to the stripe command.
+Installing the CLI provides access to the `gocancel` command.
 
 ```sh
 gocancel [command]
