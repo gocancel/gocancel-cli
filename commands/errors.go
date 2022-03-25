@@ -60,6 +60,7 @@ func checkErr(err error) {
 func warn(msg string, args ...interface{}) {
 	fmt.Fprintf(color.Output, "%s: %s\n", colorWarn, fmt.Sprintf(msg, args...))
 }
+
 func warnConfirm(msg string, args ...interface{}) {
 	fmt.Fprintf(color.Output, "%s: %s", colorWarn, fmt.Sprintf(msg, args...))
 }

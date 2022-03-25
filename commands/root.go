@@ -87,7 +87,7 @@ func AddStringFlag(cmd *Command, name, shorthand, dflt, desc string, opts ...fla
 func AddBoolFlag(cmd *Command, name, shorthand string, def bool, desc string, opts ...flagOpt) {
 	fn := flagName(cmd, name)
 	cmd.Flags().BoolP(name, shorthand, def, desc)
-	viper.BindPFlag(fn, cmd.Flags().Lookup(name))
+	_ = viper.BindPFlag(fn, cmd.Flags().Lookup(name))
 
 	for _, o := range opts {
 		o(cmd, name, fn)
@@ -98,7 +98,7 @@ func AddBoolFlag(cmd *Command, name, shorthand string, def bool, desc string, op
 func AddStringSliceFlag(cmd *Command, name, shorthand string, def []string, desc string, opts ...flagOpt) {
 	fn := flagName(cmd, name)
 	cmd.Flags().StringSliceP(name, shorthand, def, desc)
-	viper.BindPFlag(fn, cmd.Flags().Lookup(name))
+	_ = viper.BindPFlag(fn, cmd.Flags().Lookup(name))
 
 	for _, o := range opts {
 		o(cmd, name, fn)
