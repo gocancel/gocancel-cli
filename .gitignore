@@ -1,3 +1,4 @@
 /.envrc*
 !.envrc.example
+/dist/
 /gocancel
