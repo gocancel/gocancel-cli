@@ -6,7 +6,7 @@ require (
 	github.com/fatih/color v1.13.0
 	github.com/gocancel/gocancel-go v0.3.0
 	github.com/shiena/ansicolor v0.0.0-20200904210342-c7312218db18
-	github.com/spf13/cobra v1.3.0
+	github.com/spf13/cobra v1.4.0
 	github.com/spf13/viper v1.10.1
 	github.com/vincent-petithory/dataurl v1.0.0
 	golang.org/x/oauth2 v0.0.0-20211104180415-d3ed0bb246c8
