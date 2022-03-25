@@ -31,7 +31,7 @@ jobs:
       - name: Build with GoReleaser
         uses: goreleaser/goreleaser-action@v2
         with:
-          args: build --snapshot
+          args: build --snapshot --single-target
 
   lint:
     runs-on: ubuntu-latest
