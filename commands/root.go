@@ -16,7 +16,7 @@ var (
 		Command: &cobra.Command{
 			Use:   "gocancel",
 			Short: "A CLI to interact with the GoCancel API.",
-			Long:  "The official command-line tool to interact with the GoCancel API.",
+			Long:  "A command-line interface (CLI) to interact with the GoCancel API.",
 		},
 	}
 
