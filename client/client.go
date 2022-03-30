@@ -33,7 +33,7 @@ func Create(clientID string, clientSecret string) (*gocancel.Client, error) {
 	conf := &clientcredentials.Config{
 		ClientID:     clientID,
 		ClientSecret: clientSecret,
-		Scopes:       []string{"read:categories", "read:letters", "write:letters", "read:organizations"},
+		Scopes:       []string{"read:categories", "read:letters", "write:letters", "read:organizations", "read:products"},
 		TokenURL:     base.ResolveReference(token).String(),
 	}
 	tc := conf.Client(ctx)

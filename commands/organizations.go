@@ -30,6 +30,18 @@ Only basic information is included with the text output format. For complete org
 		displayerType(&displayers.Organizations{}),
 	)
 
+	CmdBuilder(
+		cmd,
+		runOrganizationProductsList,
+		"products <organization-id>",
+		"List all products for an organization",
+		`List all products for an organization within your account.
+
+Only basic information is included with the text output format. For complete product details, use the JSON format.`,
+		writer,
+		displayerType(&displayers.Products{}),
+	)
+
 	return cmd
 }
 
@@ -41,4 +53,20 @@ func runOrganizationsList(c *CmdConfig) error {
 	}
 
 	return c.Display(displayers.Organizations(organizations))
+}
+
+// runOrganizationProductsList lists all products for an organization.
+func runOrganizationProductsList(c *CmdConfig) error {
+	if len(c.Args) < 1 {
+		return NewMissingArgsErr(c.NS)
+	}
+
+	organizationId := c.Args[0]
+
+	products, _, err := c.Client.Organizations.ListProducts(context.Background(), organizationId, nil)
+	if err != nil {
+		return err
+	}
+
+	return c.Display(displayers.Products(products))
 }
