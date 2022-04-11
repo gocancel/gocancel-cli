@@ -1,8 +1,6 @@
 package commands
 
 import (
-	"context"
-
 	"github.com/gocancel/gocancel-cli/commands/displayers"
 	"github.com/spf13/cobra"
 )
@@ -74,7 +72,7 @@ Only basic information is included with the text output format. For complete pro
 
 // runOrganizationsList lists all organizations.
 func runOrganizationsList(c *CmdConfig) error {
-	organizations, _, err := c.Client.Organizations.List(context.Background(), nil)
+	organizations, err := c.Organizations().List()
 	if err != nil {
 		return err
 	}
@@ -88,9 +86,9 @@ func runOrganizationsGet(c *CmdConfig) error {
 		return NewMissingArgsErr(c.NS)
 	}
 
-	organizationId := c.Args[0]
+	organizationID := c.Args[0]
 
-	organization, _, err := c.Client.Organizations.Get(context.Background(), organizationId)
+	organization, err := c.Organizations().Get(organizationID)
 	if err != nil {
 		return err
 	}
@@ -104,9 +102,9 @@ func runOrganizationsListProducts(c *CmdConfig) error {
 		return NewMissingArgsErr(c.NS)
 	}
 
-	organizationId := c.Args[0]
+	organizationID := c.Args[0]
 
-	products, _, err := c.Client.Organizations.ListProducts(context.Background(), organizationId, nil)
+	products, err := c.Organizations().ListProducts(organizationID)
 	if err != nil {
 		return err
 	}
@@ -120,10 +118,10 @@ func runOrganizationsGetProduct(c *CmdConfig) error {
 		return NewMissingArgsErr(c.NS)
 	}
 
-	organizationId := c.Args[0]
-	productId := c.Args[1]
+	organizationID := c.Args[0]
+	productID := c.Args[1]
 
-	product, _, err := c.Client.Organizations.GetProduct(context.Background(), organizationId, productId)
+	product, err := c.Organizations().GetProduct(organizationID, productID)
 	if err != nil {
 		return err
 	}

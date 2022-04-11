@@ -2,7 +2,6 @@ package commands
 
 import (
 	"bytes"
-	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -87,7 +86,7 @@ func runLettersCreate(c *CmdConfig) error {
 
 	letterPayload.ProofOfIDs = proofOfIDs
 
-	letter, _, err := c.Client.Letters.Create(context.Background(), letterPayload.LetterRequest)
+	letter, err := c.Letters().Create(letterPayload.LetterRequest)
 	if err != nil {
 		return err
 	}
@@ -103,9 +102,9 @@ func runLettersGet(c *CmdConfig) error {
 		return NewMissingArgsErr(c.NS)
 	}
 
-	id := c.Args[0]
+	letterID := c.Args[0]
 
-	letter, _, err := c.Client.Letters.Get(context.Background(), id)
+	letter, err := c.Letters().Get(letterID)
 	if err != nil {
 		return err
 	}
@@ -115,7 +114,7 @@ func runLettersGet(c *CmdConfig) error {
 
 // runLettersList lists all letters.
 func runLettersList(c *CmdConfig) error {
-	letters, _, err := c.Client.Letters.List(context.Background(), nil)
+	letters, err := c.Letters().List()
 	if err != nil {
 		return err
 	}

@@ -1,8 +1,6 @@
 package commands
 
 import (
-	"context"
-
 	"github.com/gocancel/gocancel-cli/commands/displayers"
 	"github.com/spf13/cobra"
 )
@@ -39,9 +37,9 @@ func runProductsGet(c *CmdConfig) error {
 		return NewMissingArgsErr(c.NS)
 	}
 
-	productId := c.Args[0]
+	productID := c.Args[0]
 
-	product, _, err := c.Client.Products.Get(context.Background(), productId)
+	product, err := c.Products().Get(productID)
 	if err != nil {
 		return err
 	}

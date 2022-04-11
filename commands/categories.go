@@ -1,8 +1,6 @@
 package commands
 
 import (
-	"context"
-
 	"github.com/gocancel/gocancel-cli/commands/displayers"
 	"github.com/spf13/cobra"
 )
@@ -48,7 +46,7 @@ Only basic information is included with the text output format. For complete cat
 
 // runCategoriesList lists all categories.
 func runCategoriesList(c *CmdConfig) error {
-	categories, _, err := c.Client.Categories.List(context.Background(), nil)
+	categories, err := c.Categories().List()
 	if err != nil {
 		return err
 	}
@@ -62,9 +60,9 @@ func runCategoriesGet(c *CmdConfig) error {
 		return NewMissingArgsErr(c.NS)
 	}
 
-	categoryId := c.Args[0]
+	categoryID := c.Args[0]
 
-	category, _, err := c.Client.Categories.Get(context.Background(), categoryId)
+	category, err := c.Categories().Get(categoryID)
 	if err != nil {
 		return err
 	}
