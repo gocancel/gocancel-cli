@@ -30,6 +30,19 @@ Only basic information is included with the text output format. For complete cat
 		displayerType(&displayers.Categories{}),
 	)
 
+	CmdBuilder(
+		cmd,
+		runCategoriesGet,
+		"get <category-id>",
+		"Get a category",
+		`Get a category with the provided id.
+
+Only basic information is included with the text output format. For complete category details, use the JSON format.`,
+		writer,
+		aliasOpt("g"),
+		displayerType(&displayers.Categories{}),
+	)
+
 	return cmd
 }
 
@@ -41,4 +54,20 @@ func runCategoriesList(c *CmdConfig) error {
 	}
 
 	return c.Display(displayers.Categories(categories))
+}
+
+// runCategoriesGet gets a category.
+func runCategoriesGet(c *CmdConfig) error {
+	if len(c.Args) < 1 {
+		return NewMissingArgsErr(c.NS)
+	}
+
+	categoryId := c.Args[0]
+
+	category, _, err := c.Client.Categories.Get(context.Background(), categoryId)
+	if err != nil {
+		return err
+	}
+
+	return c.Display(displayers.Categories{category})
 }
