@@ -71,11 +71,13 @@ Only basic information is included with the text output format. For complete let
 // runLettersCreate creates an app.
 func runLettersCreate(c *CmdConfig) error {
 	payloadPath := viper.GetString(nskey(c.NS, "payload"))
+	fmt.Printf("%v\n", payloadPath)
 
 	letterPayload, err := readLetterPayload(os.Stdin, payloadPath)
 	if err != nil {
 		return err
 	}
+	fmt.Printf("%v\n", letterPayload)
 
 	proofOfIDPaths := viper.GetStringSlice(nskey(c.NS, "proof-of-id-file"))
 

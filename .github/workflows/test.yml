@@ -28,6 +28,8 @@ jobs:
           path: ~/go/pkg/mod
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: ${{ runner.os }}-go-
+      - name: Run tests
+        run: make test
       - name: Build with GoReleaser
         uses: goreleaser/goreleaser-action@v2
         with:

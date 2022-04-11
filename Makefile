@@ -13,3 +13,6 @@ build:
 
 lint:
 	golangci-lint run
+
+mocks:
+	@scripts/generate-mocks.sh
