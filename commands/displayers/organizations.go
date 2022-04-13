@@ -52,17 +52,17 @@ func (o Organizations) KV() []map[string]interface{} {
 
 	for i, organization := range o {
 		out[i] = map[string]interface{}{
-			"ID":                *organization.ID,
-			"Name":              *organization.Name,
-			"Slug":              *organization.Slug,
-			"Email":             *organization.Email,
-			"URL":               *organization.URL,
-			"Phone":             *organization.Phone,
-			"Fax":               *organization.Fax,
-			"CategoryID":        *organization.CategoryID,
-			"RequiresConsent":   *organization.RequiresConsent,
-			"RequiresProofOfID": *organization.RequiresProofOfID,
-			"Metadata":          *organization.Metadata,
+			"ID":                organization.ID,
+			"Name":              organization.Name,
+			"Slug":              organization.Slug,
+			"Email":             organization.Email,
+			"URL":               organization.URL,
+			"Phone":             organization.Phone,
+			"Fax":               organization.Fax,
+			"CategoryID":        organization.CategoryID,
+			"RequiresConsent":   organization.RequiresConsent,
+			"RequiresProofOfID": organization.RequiresProofOfID,
+			"Metadata":          organization.Metadata,
 			"CreatedAt":         organization.CreatedAt,
 			"UpdatedAt":         organization.UpdatedAt,
 		}

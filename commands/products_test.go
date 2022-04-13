@@ -23,7 +23,7 @@ func TestProductsGet(t *testing.T) {
 			Email:             gocancel.String("contact@acme.com"),
 			URL:               gocancel.String("https://acme.com"),
 			Phone:             gocancel.String("517-234-9141"),
-			Fax:               gocancel.String("745-756-0818"),
+			Fax:               nil,
 			OrganizationID:    gocancel.String("f38c8fab-0fa6-40b6-bb0c-6b3dfa2fec05"),
 			RequiresConsent:   gocancel.Bool(true),
 			RequiresProofOfID: gocancel.Bool(true),

@@ -40,11 +40,11 @@ func (c Categories) KV() []map[string]interface{} {
 
 	for i, category := range c {
 		out[i] = map[string]interface{}{
-			"ID":              *category.ID,
-			"Name":            *category.Name,
-			"Slug":            *category.Slug,
-			"RequiresConsent": *category.RequiresConsent,
-			"Metadata":        *category.Metadata,
+			"ID":              category.ID,
+			"Name":            category.Name,
+			"Slug":            category.Slug,
+			"RequiresConsent": category.RequiresConsent,
+			"Metadata":        category.Metadata,
 			"CreatedAt":       category.CreatedAt,
 			"UpdatedAt":       category.UpdatedAt,
 		}

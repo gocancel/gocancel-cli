@@ -21,7 +21,7 @@ func TestOrganizationsList(t *testing.T) {
 			Name:              gocancel.String("ACME"),
 			Slug:              gocancel.String("acme"),
 			Email:             gocancel.String("contact@acme.com"),
-			URL:               gocancel.String("https://acme.com"),
+			URL:               nil,
 			Phone:             gocancel.String("517-234-9141"),
 			Fax:               gocancel.String("745-756-0818"),
 			CategoryID:        gocancel.String("7df93680-4ce2-4da4-bdb1-d5a667695fd5"),

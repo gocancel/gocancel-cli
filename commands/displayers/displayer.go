@@ -80,6 +80,12 @@ func DisplayText(item Displayable, out io.Writer, noHeaders bool, includeCols []
 		for _, col := range cols {
 			v := r[col]
 
+			rv := reflect.ValueOf(v)
+			if rv.Kind() == reflect.Ptr && !rv.IsNil() {
+				// Value is a pointer, dereference it.
+				v = rv.Elem()
+			}
+
 			values = append(values, v)
 
 			switch v.(type) {

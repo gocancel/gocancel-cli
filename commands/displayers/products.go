@@ -52,17 +52,17 @@ func (o Products) KV() []map[string]interface{} {
 
 	for i, product := range o {
 		out[i] = map[string]interface{}{
-			"ID":                *product.ID,
-			"Name":              *product.Name,
-			"Slug":              *product.Slug,
-			"Email":             *product.Email,
-			"URL":               *product.URL,
-			"Phone":             *product.Phone,
-			"Fax":               *product.Fax,
-			"OrganizationID":    *product.OrganizationID,
-			"RequiresConsent":   *product.RequiresConsent,
-			"RequiresProofOfID": *product.RequiresProofOfID,
-			"Metadata":          *product.Metadata,
+			"ID":                product.ID,
+			"Name":              product.Name,
+			"Slug":              product.Slug,
+			"Email":             product.Email,
+			"URL":               product.URL,
+			"Phone":             product.Phone,
+			"Fax":               product.Fax,
+			"OrganizationID":    product.OrganizationID,
+			"RequiresConsent":   product.RequiresConsent,
+			"RequiresProofOfID": product.RequiresProofOfID,
+			"Metadata":          product.Metadata,
 			"CreatedAt":         product.CreatedAt,
 			"UpdatedAt":         product.UpdatedAt,
 		}
