@@ -9,7 +9,7 @@ require (
 	github.com/shiena/ansicolor v0.0.0-20200904210342-c7312218db18
 	github.com/spf13/cobra v1.4.0
 	github.com/spf13/viper v1.10.1
-	github.com/stretchr/testify v1.7.0
+	github.com/stretchr/testify v1.7.1
 	github.com/vincent-petithory/dataurl v1.0.0
 	golang.org/x/oauth2 v0.0.0-20211104180415-d3ed0bb246c8
 	sigs.k8s.io/yaml v1.3.0
