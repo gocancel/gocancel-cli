@@ -2,7 +2,9 @@ package commands
 
 import (
 	"github.com/gocancel/gocancel-cli/commands/displayers"
+	"github.com/gocancel/gocancel-go"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 func newCategoriesCmd() *Command {
@@ -15,7 +17,7 @@ func newCategoriesCmd() *Command {
 		},
 	}
 
-	CmdBuilder(
+	list := CmdBuilder(
 		cmd,
 		runCategoriesList,
 		"list",
@@ -27,6 +29,8 @@ Only basic information is included with the text output format. For complete cat
 		aliasOpt("ls"),
 		displayerType(&displayers.Categories{}),
 	)
+	AddStringFlag(list, "slug", "", "", "A slug to filter categories on.")
+	AddStringSliceFlag(list, "locales", "", []string{}, "One or more locales to filter categories on.")
 
 	CmdBuilder(
 		cmd,
@@ -46,7 +50,19 @@ Only basic information is included with the text output format. For complete cat
 
 // runCategoriesList lists all categories.
 func runCategoriesList(c *CmdConfig) error {
-	categories, err := c.Categories().List()
+	opts := &gocancel.CategoriesListOptions{}
+
+	slug := viper.GetString(nskey(c.NS, "slug"))
+	if slug != "" {
+		opts.Slug = slug
+	}
+
+	locales := viper.GetStringSlice(nskey(c.NS, "locales"))
+	if len(locales) > 0 {
+		opts.Locales = locales
+	}
+
+	categories, err := c.Categories().List(opts)
 	if err != nil {
 		return err
 	}

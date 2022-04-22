@@ -8,7 +8,7 @@ import (
 
 // CategoriesService is the interface that wraps the gocancel CategoriesService.
 type CategoriesService interface {
-	List() ([]*gocancel.Category, error)
+	List(opts *gocancel.CategoriesListOptions) ([]*gocancel.Category, error)
 	Get(categoryID string) (*gocancel.Category, error)
 }
 
@@ -25,8 +25,8 @@ func NewCategoriesService(client *gocancel.Client) CategoriesService {
 	}
 }
 
-func (s *categoriesService) List() ([]*gocancel.Category, error) {
-	categories, _, err := s.client.Categories.List(s.ctx, nil)
+func (s *categoriesService) List(opts *gocancel.CategoriesListOptions) ([]*gocancel.Category, error) {
+	categories, _, err := s.client.Categories.List(s.ctx, opts)
 	if err != nil {
 		return nil, err
 	}

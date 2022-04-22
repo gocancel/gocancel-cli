@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/gocancel/gocancel-go"
+	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -32,7 +33,13 @@ func TestOrganizationsList(t *testing.T) {
 			UpdatedAt:         &gocancel.Timestamp{Time: time.Date(2021, time.May, 27, 11, 49, 05, 0, time.UTC)},
 		}}
 
-		tm.organizations.EXPECT().List().Times(1).Return(organizations, nil)
+		opts := &gocancel.OrganizationsListOptions{Slug: "acme", Category: "energy", URL: "acme.com", Locales: []string{"nl-NL"}}
+		tm.organizations.EXPECT().List(opts).Times(1).Return(organizations, nil)
+
+		viper.Set(nskey(config.NS, "slug"), "acme")
+		viper.Set(nskey(config.NS, "category"), "energy")
+		viper.Set(nskey(config.NS, "url"), "acme.com")
+		viper.Set(nskey(config.NS, "locales"), []string{"nl-NL"})
 
 		err := runOrganizationsList(config)
 		assert.NoError(t, err)
@@ -84,9 +91,14 @@ func TestOrganizationsListProducts(t *testing.T) {
 			UpdatedAt:         &gocancel.Timestamp{Time: time.Date(2021, time.May, 27, 11, 49, 05, 0, time.UTC)},
 		}}
 
-		tm.organizations.EXPECT().ListProducts(*product[0].OrganizationID).Times(1).Return(product, nil)
+		opts := &gocancel.OrganizationProductsListOptions{Slug: "acme", URL: "acme.com", Locales: []string{"nl-NL"}}
+		tm.organizations.EXPECT().ListProducts(*product[0].OrganizationID, opts).Times(1).Return(product, nil)
 
 		config.Args = append(config.Args, *product[0].OrganizationID)
+
+		viper.Set(nskey(config.NS, "slug"), "acme")
+		viper.Set(nskey(config.NS, "url"), "acme.com")
+		viper.Set(nskey(config.NS, "locales"), []string{"nl-NL"})
 
 		err := runOrganizationsListProducts(config)
 		assert.NoError(t, err)

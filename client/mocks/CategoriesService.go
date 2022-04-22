@@ -50,16 +50,16 @@ func (mr *MockCategoriesServiceMockRecorder) Get(categoryID interface{}) *gomock
 }
 
 // List mocks base method.
-func (m *MockCategoriesService) List() ([]*gocancel.Category, error) {
+func (m *MockCategoriesService) List(opts *gocancel.CategoriesListOptions) ([]*gocancel.Category, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "List")
+	ret := m.ctrl.Call(m, "List", opts)
 	ret0, _ := ret[0].([]*gocancel.Category)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // List indicates an expected call of List.
-func (mr *MockCategoriesServiceMockRecorder) List() *gomock.Call {
+func (mr *MockCategoriesServiceMockRecorder) List(opts interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockCategoriesService)(nil).List))
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockCategoriesService)(nil).List), opts)
 }

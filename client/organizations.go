@@ -8,9 +8,9 @@ import (
 
 // OrganizationsService is the interface that wraps the gocancel OrganizationsService.
 type OrganizationsService interface {
-	List() ([]*gocancel.Organization, error)
+	List(opts *gocancel.OrganizationsListOptions) ([]*gocancel.Organization, error)
 	Get(organizationID string) (*gocancel.Organization, error)
-	ListProducts(organizationID string) ([]*gocancel.Product, error)
+	ListProducts(organizationID string, opts *gocancel.OrganizationProductsListOptions) ([]*gocancel.Product, error)
 	GetProduct(organizationID string, productID string) (*gocancel.Product, error)
 }
 
@@ -27,8 +27,8 @@ func NewOrganizationsService(client *gocancel.Client) OrganizationsService {
 	}
 }
 
-func (s *organizationsService) List() ([]*gocancel.Organization, error) {
-	organizations, _, err := s.client.Organizations.List(s.ctx, nil)
+func (s *organizationsService) List(opts *gocancel.OrganizationsListOptions) ([]*gocancel.Organization, error) {
+	organizations, _, err := s.client.Organizations.List(s.ctx, opts)
 	if err != nil {
 		return nil, err
 	}
@@ -45,8 +45,8 @@ func (s *organizationsService) Get(organizationID string) (*gocancel.Organizatio
 	return organization, nil
 }
 
-func (s *organizationsService) ListProducts(organizationID string) ([]*gocancel.Product, error) {
-	products, _, err := s.client.Organizations.ListProducts(s.ctx, organizationID, nil)
+func (s *organizationsService) ListProducts(organizationID string, opts *gocancel.OrganizationProductsListOptions) ([]*gocancel.Product, error) {
+	products, _, err := s.client.Organizations.ListProducts(s.ctx, organizationID, opts)
 	if err != nil {
 		return nil, err
 	}

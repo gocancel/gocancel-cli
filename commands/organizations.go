@@ -2,7 +2,9 @@ package commands
 
 import (
 	"github.com/gocancel/gocancel-cli/commands/displayers"
+	"github.com/gocancel/gocancel-go"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 func newOrganizationsCmd() *Command {
@@ -15,7 +17,7 @@ func newOrganizationsCmd() *Command {
 		},
 	}
 
-	CmdBuilder(
+	list := CmdBuilder(
 		cmd,
 		runOrganizationsList,
 		"list",
@@ -27,6 +29,10 @@ Only basic information is included with the text output format. For complete org
 		aliasOpt("ls"),
 		displayerType(&displayers.Organizations{}),
 	)
+	AddStringFlag(list, "slug", "", "", "A slug to filter organizations on.")
+	AddStringFlag(list, "category", "", "", "A category to filter organizations on.")
+	AddStringFlag(list, "url", "", "", "An (partial) URL to filter organizations on.")
+	AddStringSliceFlag(list, "locales", "", []string{}, "One or more locales to filter organizations on.")
 
 	CmdBuilder(
 		cmd,
@@ -41,7 +47,7 @@ Only basic information is included with the text output format. For complete org
 		displayerType(&displayers.Categories{}),
 	)
 
-	CmdBuilder(
+	listProducts := CmdBuilder(
 		cmd,
 		runOrganizationsListProducts,
 		"list-products <organization-id>",
@@ -53,6 +59,9 @@ Only basic information is included with the text output format. For complete pro
 		aliasOpt("lsp"),
 		displayerType(&displayers.Products{}),
 	)
+	AddStringFlag(listProducts, "slug", "", "", "A slug to filter products on.")
+	AddStringFlag(listProducts, "url", "", "", "An (partial) URL to filter products on.")
+	AddStringSliceFlag(listProducts, "locales", "", []string{}, "One or more locales to filter products on.")
 
 	CmdBuilder(
 		cmd,
@@ -72,7 +81,29 @@ Only basic information is included with the text output format. For complete pro
 
 // runOrganizationsList lists all organizations.
 func runOrganizationsList(c *CmdConfig) error {
-	organizations, err := c.Organizations().List()
+	opts := &gocancel.OrganizationsListOptions{}
+
+	slug := viper.GetString(nskey(c.NS, "slug"))
+	if slug != "" {
+		opts.Slug = slug
+	}
+
+	category := viper.GetString(nskey(c.NS, "category"))
+	if category != "" {
+		opts.Category = category
+	}
+
+	url := viper.GetString(nskey(c.NS, "url"))
+	if url != "" {
+		opts.URL = url
+	}
+
+	locales := viper.GetStringSlice(nskey(c.NS, "locales"))
+	if len(locales) > 0 {
+		opts.Locales = locales
+	}
+
+	organizations, err := c.Organizations().List(opts)
 	if err != nil {
 		return err
 	}
@@ -103,8 +134,24 @@ func runOrganizationsListProducts(c *CmdConfig) error {
 	}
 
 	organizationID := c.Args[0]
+	opts := &gocancel.OrganizationProductsListOptions{}
 
-	products, err := c.Organizations().ListProducts(organizationID)
+	slug := viper.GetString(nskey(c.NS, "slug"))
+	if slug != "" {
+		opts.Slug = slug
+	}
+
+	url := viper.GetString(nskey(c.NS, "url"))
+	if url != "" {
+		opts.URL = url
+	}
+
+	locales := viper.GetStringSlice(nskey(c.NS, "locales"))
+	if len(locales) > 0 {
+		opts.Locales = locales
+	}
+
+	products, err := c.Organizations().ListProducts(organizationID, opts)
 	if err != nil {
 		return err
 	}

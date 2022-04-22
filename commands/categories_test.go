@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/gocancel/gocancel-go"
+	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -26,7 +27,11 @@ func TestCategoriesList(t *testing.T) {
 			UpdatedAt:       &gocancel.Timestamp{Time: time.Date(2021, time.May, 27, 11, 49, 05, 0, time.UTC)},
 		}}
 
-		tm.categories.EXPECT().List().Times(1).Return(categories, nil)
+		opts := &gocancel.CategoriesListOptions{Slug: "foo", Locales: []string{"nl-NL"}}
+		tm.categories.EXPECT().List(opts).Times(1).Return(categories, nil)
+
+		viper.Set(nskey(config.NS, "slug"), "foo")
+		viper.Set(nskey(config.NS, "locales"), []string{"nl-NL"})
 
 		err := runCategoriesList(config)
 		assert.NoError(t, err)

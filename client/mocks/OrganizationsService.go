@@ -65,31 +65,31 @@ func (mr *MockOrganizationsServiceMockRecorder) GetProduct(organizationID, produ
 }
 
 // List mocks base method.
-func (m *MockOrganizationsService) List() ([]*gocancel.Organization, error) {
+func (m *MockOrganizationsService) List(opts *gocancel.OrganizationsListOptions) ([]*gocancel.Organization, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "List")
+	ret := m.ctrl.Call(m, "List", opts)
 	ret0, _ := ret[0].([]*gocancel.Organization)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // List indicates an expected call of List.
-func (mr *MockOrganizationsServiceMockRecorder) List() *gomock.Call {
+func (mr *MockOrganizationsServiceMockRecorder) List(opts interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockOrganizationsService)(nil).List))
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "List", reflect.TypeOf((*MockOrganizationsService)(nil).List), opts)
 }
 
 // ListProducts mocks base method.
-func (m *MockOrganizationsService) ListProducts(organizationID string) ([]*gocancel.Product, error) {
+func (m *MockOrganizationsService) ListProducts(organizationID string, opts *gocancel.OrganizationProductsListOptions) ([]*gocancel.Product, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "ListProducts", organizationID)
+	ret := m.ctrl.Call(m, "ListProducts", organizationID, opts)
 	ret0, _ := ret[0].([]*gocancel.Product)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // ListProducts indicates an expected call of ListProducts.
-func (mr *MockOrganizationsServiceMockRecorder) ListProducts(organizationID interface{}) *gomock.Call {
+func (mr *MockOrganizationsServiceMockRecorder) ListProducts(organizationID, opts interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListProducts", reflect.TypeOf((*MockOrganizationsService)(nil).ListProducts), organizationID)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListProducts", reflect.TypeOf((*MockOrganizationsService)(nil).ListProducts), organizationID, opts)
 }
