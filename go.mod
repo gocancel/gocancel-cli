@@ -9,7 +9,7 @@ require (
 	github.com/shiena/ansicolor v0.0.0-20200904210342-c7312218db18
 	github.com/spf13/cobra v1.4.0
 	github.com/spf13/viper v1.12.0
-	github.com/stretchr/testify v1.7.1
+	github.com/stretchr/testify v1.7.2
 	github.com/vincent-petithory/dataurl v1.0.0
 	golang.org/x/oauth2 v0.0.0-20220411215720-9780585627b5
 	sigs.k8s.io/yaml v1.3.0
@@ -42,5 +42,5 @@ require (
 	gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15 // indirect
 	gopkg.in/ini.v1 v1.66.4 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	gopkg.in/yaml.v3 v3.0.0 // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
