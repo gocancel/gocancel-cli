@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/fatih/color v1.13.0
-	github.com/gocancel/gocancel-go v0.5.0
+	github.com/gocancel/gocancel-go v0.5.1
 	github.com/golang/mock v1.6.0
 	github.com/shiena/ansicolor v0.0.0-20200904210342-c7312218db18
 	github.com/spf13/cobra v1.4.0
