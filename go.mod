@@ -7,7 +7,7 @@ require (
 	github.com/gocancel/gocancel-go v0.5.1
 	github.com/golang/mock v1.6.0
 	github.com/shiena/ansicolor v0.0.0-20200904210342-c7312218db18
-	github.com/spf13/cobra v1.4.0
+	github.com/spf13/cobra v1.5.0
 	github.com/spf13/viper v1.12.0
 	github.com/stretchr/testify v1.7.2
 	github.com/vincent-petithory/dataurl v1.0.0
